@@ -10,6 +10,7 @@
   
   </head>
   <script src="https://www.w3schools.com/lib/w3.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <body>
 
 <img class="nature" src="https://media.npr.org/assets/img/2017/09/12/macaca_nigra_self-portrait-3e0070aa19a7fe36e802253048411a38f14a79f8.jpg" width="20%">
@@ -19,6 +20,21 @@
 <script>
 w3.slideshow(".nature", 1500);
 </script>
-
+<p>
+  <b>Click</b> to change the <span id="tag">html</span>
+</p>
+<p>
+  to a <span id="text">text</span> node.
+</p>
+<p>
+  This <button name="nada">button</button> does nothing.
+</p>
+ 
+<script>
+$( "p" ).click(function() {
+  var htmlString = $( this ).html();
+  $( this ).text( htmlString );
+});
+</script>
 </body>
 </html>
