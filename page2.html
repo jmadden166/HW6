@@ -1,24 +1,10 @@
 <!DOCTYPE html>
-<html ng-app lang="en">
+<html>
   <head>
-     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>JavaScript</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  $("button").click(function(){
-    $(this).hide();
-  });
-});
-</script>
-  
+    <meta charset="utf-8">
+    <title>Choreographer-JS | Example Three</title>
   </head>
-  <script src="https://www.w3schools.com/lib/w3.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
   <body>
     <style>
       p {
@@ -36,33 +22,30 @@ $(document).ready(function(){
 
       #box {
         margin: 0 0;
-        width: 100%;
-        height: 500vh;
-        background: black;
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
         opacity: 0.2;
+
+        transition: background-color 0.4s ease-in-out;
       }
     </style>
 
-    <p>Page 2: Animating based on scroll location.</p>
+    <p>Multiple animations based on mouse movement.</p>
     <div id="box"></div>
 
     <script src="../dist/choreographer.min.js"></script>
     <script>
       var choreographer = new Choreographer({
         animations: [
-          {
-            range: [-1, window.innerHeight * 4],
-            selector: '#box',
-            type: 'scale',
-            style: 'opacity',
-            from: 0.2,
-            to: 1
-          }
+          { range: [-1, window.innerWidth], selector: '#box', type: 'scale', style: 'height', from: 100, to: 50, unit: 'vh' },
+          { range: [-1, window.innerWidth / 2], selector: '#box', type: 'scale', style: 'opacity', from: 0.2, to: 1 },
+          { range: [window.innerWidth / 2, window.innerWidth], selector: '#box', type: 'change', style: 'backgroundColor', to: '#00c9ff' },
         ]
       })
 
-      window.addEventListener('scroll', function() {
-        choreographer.runAnimationsAt(window.pageYOffset)
+      window.addEventListener('mousemove', function(e) {
+        choreographer.runAnimationsAt(e.clientX)
       })
     </script>
   </body>
